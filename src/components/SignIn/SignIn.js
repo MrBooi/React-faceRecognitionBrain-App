@@ -3,7 +3,7 @@ import React from 'react';
 
 class SignIn extends React.Component  {
      constructor(props){
-         super(props);
+         super();
          this.state={
             signInEmail:'',
             signInPassword:''
@@ -24,15 +24,17 @@ class SignIn extends React.Component  {
             password:this.state.signInPassword
         })
     }).then(response=>response.json())
-    .then(data =>{
-        if (data==='success') {
-        this.props.onRouteChange('home')
+    .then(user =>{
+        console.log(user.id);
+        if (user.id) {
+        this.props.loadUser(user);
+        this.props.onRouteChange('home');
         }
     })
     
     }
 
-    render(props){
+    render(){
         const {onRouteChange} =this.props;
         return (
             <article className="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
@@ -71,7 +73,7 @@ class SignIn extends React.Component  {
                         </div>
                         <div className="lh-copy mt3">
                             <p
-                                onClick={() => onRouteChange('register')}
+                                onClick={(e)=> onRouteChange('register')}
                                 className="f6 link dim black db pointer ">Register</p>
     
                         </div>
