@@ -12,6 +12,6 @@ const FaceRecognition = ({imageURL, box}) => {
     )
 
 
-};
+}
 
 export default FaceRecognition;
